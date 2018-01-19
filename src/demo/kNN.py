@@ -63,7 +63,7 @@ def autoNormal(dataSet):#正规化数据
 
 def datingClassTest():
     ratio = 0.3
-    datingDataMat, datingLabel = file2matrix("G:\机器学习实战源代码\Ch02\datingTestSet2.txt")
+    datingDataMat, datingLabel = file2matrix("./datingTestSet2.txt")
     datingDataMat, rangeVal, minVal = autoNormal(datingDataMat)
     m = datingDataMat.shape[0]
     numOfTestVec = int(m * ratio)
@@ -90,7 +90,7 @@ def img2Vector(filename):
         fp.close()
         
 def handWritingTest():
-    filePath = r"G:\机器学习实战源代码\Ch02\digits\trainingDigits"
+    filePath = r"./trainingDigits"
     DirList = os.listdir(filePath)
     m = len(DirList)
     trainSet = np.zeros((m, 1024))
@@ -100,14 +100,14 @@ def handWritingTest():
         labelSet.append(path.split("_")[0])
         returnVect = img2Vector(filePath + "\\" + path)
         trainSet[i, :] = returnVect
-    testPath = r"G:\机器学习实战源代码\Ch02\digits\testDigits"
+    testPath = r".\testDigits"
     DirList = os.listdir(testPath)
     m = len(DirList)
     error = 0
     for i in range(m):
         path = DirList[i]
         label = path.split("_")[0]
-        returnVect = img2Vector(testPath + "\\" + path)
+        returnVect = img2Vector(testPath + "/" + path)
         tmp_res = classify0(returnVect[0, :], trainSet, labelSet, 10)
         print("the classifier came back with: {0}, the real answer is: {1}".format(tmp_res, label))
         if tmp_res != label:
