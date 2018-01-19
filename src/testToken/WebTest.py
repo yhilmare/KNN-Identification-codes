@@ -17,8 +17,8 @@ import re
 if __name__ == "__main__":
     try:
         dataSet, labels = TokenTest.readDataSet()
-        stu_id = "20133478"
-        passwd = "940805"
+        stu_id = "*******"
+        passwd = "*******"
         resp = requests.get("http://jiaowu.swjtu.edu.cn/servlet/GetRandomNumberToJPEG", timeout=5)
         tmp_bt = resp.content
         pattern = TokenTest.kNNidentify(dataSet, labels, BytesIO(tmp_bt))
